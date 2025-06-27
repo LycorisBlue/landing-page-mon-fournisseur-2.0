@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { X, Send, CheckCircle, Plus, Trash2, Link, Sparkles, Shield, Clock } from "lucide-react";
+import { X, Send, CheckCircle, Plus, Trash2, Link, Sparkles, Shield, Clock, ArrowLeft } from "lucide-react";
 
 interface ProductFormProps {
   isOpen: boolean;
@@ -93,16 +93,16 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/30 z-50 p-4">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.3 }}
-        className="bg-white w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden"
+        className="bg-white w-full h-full rounded-3xl shadow-2xl overflow-hidden flex flex-col"
       >
         {/* Header avec gradient */}
-        <div className="bg-gradient-to-r from-brand-red to-brand-orange p-6 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-brand-red to-brand-orange p-6 relative overflow-hidden flex-shrink-0">
           {/* Éléments décoratifs */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
@@ -149,8 +149,8 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
                 {steps.map((step, index) => (
                   <div key={step.number} className="flex items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${currentStep >= step.number
-                        ? 'bg-white text-brand-red'
-                        : 'bg-white/30 text-white'
+                      ? 'bg-white text-brand-red'
+                      : 'bg-white/30 text-white'
                       }`}>
                       {step.number}
                     </div>
@@ -169,7 +169,7 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
         </div>
 
         {/* Contenu */}
-        <div className="p-6 overflow-y-auto max-h-[60vh]">
+        <div className="flex-1 p-6 overflow-y-auto">
           {!isSubmitted ? (
             <form onSubmit={handleSubmit}>
               <AnimatePresence mode="wait">
@@ -361,8 +361,8 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
                               type="button"
                               onClick={() => setFormData({ ...formData, urgency: option.value })}
                               className={`p-4 rounded-xl border-2 transition-all duration-300 ${formData.urgency === option.value
-                                  ? 'border-brand-orange bg-brand-orange/10'
-                                  : 'border-gray-200 hover:border-gray-300'
+                                ? 'border-brand-orange bg-brand-orange/10'
+                                : 'border-gray-200 hover:border-gray-300'
                                 }`}
                             >
                               <div className="text-2xl mb-2">{option.icon}</div>
@@ -439,7 +439,7 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
 
         {/* Footer avec navigation */}
         {!isSubmitted && (
-          <div className="border-t border-gray-100 p-6 bg-gray-50">
+          <div className="border-t border-gray-100 p-6 bg-gray-50 flex-shrink-0">
             <div className="flex justify-between items-center">
               <div>
                 {currentStep > 1 && (
@@ -447,9 +447,11 @@ const ProductForm = ({ isOpen, onClose }: ProductFormProps) => {
                     type="button"
                     onClick={prevStep}
                     variant="outline"
-                    className="font-inter font-medium px-6 py-3 rounded-xl"
+                    size="icon"
+                    className="w-12 h-12 rounded-full font-inter font-medium border-2 hover:bg-gray-100 transition-all duration-300"
+                    title="Étape précédente"
                   >
-                    ← Étape précédente
+                    <ArrowLeft className="h-5 w-5" />
                   </Button>
                 )}
               </div>

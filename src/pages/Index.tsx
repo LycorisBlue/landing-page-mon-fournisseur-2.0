@@ -1,12 +1,13 @@
-
 import { useState } from "react";
 import Hero from "@/components/Hero";
 import ProductForm from "@/components/ProductForm";
 import ProcessSection from "@/components/ProcessSection";
+import FeaturedProductsSection from "@/components/FeaturedProductsSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FloatingActionButton from "@/components/FloatingActionButton";
+import { ProductFormData } from "@/types/product";
 
 const Index = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -15,14 +16,33 @@ const Index = () => {
     setIsFormOpen(!isFormOpen);
   };
 
+  const handleOrderProduct = (formData: ProductFormData = {}) => {
+    // Pour l'instant, on ouvre simplement le formulaire
+    // L'utilisateur devra saisir manuellement les informations
+    setIsFormOpen(true);
+
+    // Optionnel : Log des données pour debug
+    if (formData.productName || formData.productUrl) {
+      console.log('Commande produit demandée:', formData);
+    }
+  };
+
   return (
     <div className="min-h-screen font-inter">
       <Hero onFormToggle={toggleForm} />
       <ProcessSection />
+
+      {/* Section Produits Phares - Nouvelle section */}
+      <FeaturedProductsSection onOrderProduct={handleOrderProduct} />
+
       <BenefitsSection />
       <TestimonialsSection />
       <FAQSection />
-      <ProductForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+
+      <ProductForm
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
 
       {/* Bouton flottant */}
       <FloatingActionButton onFormToggle={toggleForm} />

@@ -6,6 +6,7 @@ import ProcessSection from "@/components/ProcessSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
+import FloatingActionButton from "@/components/FloatingActionButton";
 
 const Index = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -22,7 +23,10 @@ const Index = () => {
       <TestimonialsSection />
       <FAQSection />
       <ProductForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
-      
+
+      {/* Bouton flottant */}
+      <FloatingActionButton onFormToggle={toggleForm} />
+
       {/* Footer amélioré */}
       <footer className="bg-brand-dark text-white py-16">
         <div className="container mx-auto px-4">
@@ -33,7 +37,7 @@ const Index = () => {
                 Mon Fournisseur 2.0
               </h3>
               <p className="font-inter text-white/80 mb-6 leading-relaxed">
-                Votre partenaire de confiance pour commander facilement depuis la Chine vers la Côte d'Ivoire. 
+                Votre partenaire de confiance pour commander facilement depuis la Chine vers la Côte d'Ivoire.
                 Simplifiez vos importations avec notre accompagnement complet.
               </p>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-red to-brand-orange rounded-full"></div>

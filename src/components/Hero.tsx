@@ -47,6 +47,7 @@ const Hero = ({ onFormToggle }: HeroProps) => {
         <Button
           onClick={onFormToggle}
           size="lg"
+          data-hero-button
           className="bg-white text-brand-red hover:bg-gray-100 font-poppins font-semibold text-lg px-8 py-6 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
         >
           Envoyer un lien produit

@@ -134,8 +134,8 @@ const FAQSection = () => {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-inter font-medium transition-all duration-300 ${selectedCategory === category
-                  ? 'bg-gradient-to-r from-brand-red to-brand-orange text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                ? 'bg-gradient-to-r from-brand-red to-brand-orange text-white shadow-lg'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                 }`}
             >
               {category}
@@ -143,24 +143,26 @@ const FAQSection = () => {
           ))}
         </motion.div>
 
-        {/* Statistiques rapides */}
+        {/* Statistiques rapides - Alignées avec le reste */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="max-w-4xl mx-auto mb-12"
         >
-          {[
-            { icon: "❓", number: "8", label: "Questions fréquentes" },
-            { icon: "⚡", number: "< 2h", label: "Réponse moyenne" },
-            { icon: "💬", number: "24/7", label: "Support WhatsApp" }
-          ].map((stat, index) => (
-            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg text-center">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="font-poppins font-bold text-2xl text-brand-dark mb-1">{stat.number}</div>
-              <div className="font-inter text-gray-600">{stat.label}</div>
-            </div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: "❓", number: "8", label: "Questions fréquentes" },
+              { icon: "⚡", number: "< 2h", label: "Réponse moyenne" },
+              { icon: "💬", number: "24/7", label: "Support WhatsApp" }
+            ].map((stat, index) => (
+              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg text-center">
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="font-poppins font-bold text-2xl text-brand-dark mb-1">{stat.number}</div>
+                <div className="font-inter text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Liste des FAQ */}

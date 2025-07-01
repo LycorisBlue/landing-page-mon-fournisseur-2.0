@@ -127,56 +127,6 @@ const FeaturedProductsSection = ({
                     />
                 </motion.div>
 
-                {/* Statistiques et filtres */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    viewport={{ once: true }}
-                    className="mb-12"
-                >
-                    {/* Filtres */}
-                    <div className="flex justify-center">
-                        <div className="bg-white rounded-2xl p-2 shadow-lg inline-flex gap-2">
-                            <Button
-                                onClick={() => setFilter('all')}
-                                variant={filter === 'all' ? 'default' : 'ghost'}
-                                className={`rounded-xl font-inter font-medium transition-all duration-300 ${filter === 'all'
-                                        ? 'bg-gradient-to-r from-brand-red to-brand-orange text-white shadow-lg'
-                                        : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50'
-                                    }`}
-                            >
-                                <ShoppingBag className="h-4 w-4 mr-2" />
-                                Tous ({stats.total})
-                            </Button>
-
-                            <Button
-                                onClick={() => setFilter('popular')}
-                                variant={filter === 'popular' ? 'default' : 'ghost'}
-                                className={`rounded-xl font-inter font-medium transition-all duration-300 ${filter === 'popular'
-                                        ? 'bg-gradient-to-r from-brand-red to-brand-orange text-white shadow-lg'
-                                        : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50'
-                                    }`}
-                            >
-                                <Star className="h-4 w-4 mr-2" />
-                                Populaires ({stats.popular})
-                            </Button>
-
-                            <Button
-                                onClick={() => setFilter('trending')}
-                                variant={filter === 'trending' ? 'default' : 'ghost'}
-                                className={`rounded-xl font-inter font-medium transition-all duration-300 ${filter === 'trending'
-                                        ? 'bg-gradient-to-r from-brand-red to-brand-orange text-white shadow-lg'
-                                        : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50'
-                                    }`}
-                            >
-                                <TrendingUp className="h-4 w-4 mr-2" />
-                                Tendances ({stats.trending})
-                            </Button>
-                        </div>
-                    </div>
-                </motion.div>
-
                 {/* Carousel de produits */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}

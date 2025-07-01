@@ -192,25 +192,6 @@ const ProductCarousel = ({
                 />
             </div>
 
-            {/* Stats */}
-            <div className="flex justify-center items-center mt-4 gap-6 text-sm text-gray-500 font-inter">
-                <span>
-                    {selectedIndex + 1} sur {products.length} produits
-                </span>
-                <span className="hidden md:inline">
-                    •
-                </span>
-                <span className="hidden md:inline">
-                    {products.filter(p => p.isPopular).length} populaires
-                </span>
-                <span className="hidden md:inline">
-                    •
-                </span>
-                <span className="hidden md:inline">
-                    {products.filter(p => p.isTrending).length} en tendance
-                </span>
-            </div>
-
             {/* Auto-play indicator */}
             {autoplayActive && (
                 <div className="absolute top-4 right-4 z-10">

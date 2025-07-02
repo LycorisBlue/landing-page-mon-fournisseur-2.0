@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, TrendingUp, ShoppingBag, Sparkles } from 'lucide-react';
+import { ShoppingBag, Sparkles } from 'lucide-react';
 import { FeaturedProduct, ProductFormData } from '@/types/product';
 import { featuredProducts } from '@/data/featuredProducts';
 import ProductCarousel from './ProductCarousel';
@@ -19,19 +19,6 @@ const FeaturedProductsSection = ({
 }: FeaturedProductsSectionProps) => {
     const [selectedProduct, setSelectedProduct] = useState<FeaturedProduct | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [filter, setFilter] = useState<'all' | 'popular' | 'trending'>('all');
-
-    // Filtrer les produits selon le filtre sélectionné
-    const filteredProducts = featuredProducts.filter(product => {
-        switch (filter) {
-            case 'popular':
-                return product.isPopular;
-            case 'trending':
-                return product.isTrending;
-            default:
-                return true;
-        }
-    });
 
     const handleProductSelect = (product: FeaturedProduct) => {
         setSelectedProduct(product);
@@ -48,14 +35,6 @@ const FeaturedProductsSection = ({
             onOrderProduct(formData);
         }
         handleCloseModal();
-    };
-
-    // Statistiques des produits
-    const stats = {
-        total: featuredProducts.length,
-        popular: featuredProducts.filter(p => p.isPopular).length,
-        trending: featuredProducts.filter(p => p.isTrending).length,
-        inStock: featuredProducts.filter(p => p.inStock).length
     };
 
     // Calcul du prix moyen
@@ -134,30 +113,12 @@ const FeaturedProductsSection = ({
                     transition={{ duration: 0.8, delay: 0.7 }}
                     viewport={{ once: true }}
                 >
-                    {filteredProducts.length > 0 ? (
-                        <ProductCarousel
-                            products={filteredProducts}
-                            onProductSelect={handleProductSelect}
-                            autoplay={true}
-                            className="mb-12"
-                        />
-                    ) : (
-                        <div className="text-center py-16 bg-white rounded-2xl">
-                            <div className="text-6xl mb-4">🔍</div>
-                            <h3 className="font-poppins font-bold text-xl text-gray-700 mb-2">
-                                Aucun produit trouvé
-                            </h3>
-                            <p className="font-inter text-gray-500 mb-6">
-                                Essayez un autre filtre ou consultez tous nos produits
-                            </p>
-                            <Button
-                                onClick={() => setFilter('all')}
-                                className="bg-gradient-to-r from-brand-red to-brand-orange hover:from-brand-red/90 hover:to-brand-orange/90"
-                            >
-                                Voir tous les produits
-                            </Button>
-                        </div>
-                    )}
+                    <ProductCarousel
+                        products={featuredProducts}
+                        onProductSelect={handleProductSelect}
+                        autoplay={true}
+                        className="mb-12"
+                    />
                 </motion.div>
 
                 {/* Call-to-action */}
